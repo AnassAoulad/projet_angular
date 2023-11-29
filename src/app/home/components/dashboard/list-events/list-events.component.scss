@@ -1,0 +1,13 @@
+:host{
+    div[events-content]{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        min-width: 200px;
+        background-color: #f8f5f3;
+    }
+    h3{
+        text-align: center;
+        text-decoration: underline;
+    }
+}

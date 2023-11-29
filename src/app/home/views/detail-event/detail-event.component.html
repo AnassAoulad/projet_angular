@@ -1,0 +1,123 @@
+<h2 style="text-align: center;">Evenement : {{event.name}}</h2>
+<div dropdown-content>
+    <div prestataire>
+        <mat-form-field>
+            <mat-label>DJ</mat-label>
+            <mat-select [(ngModel)]="dj" name="dj" (selectionChange)="updateDjEvent($event)">
+                <mat-option *ngFor="let dj of listDJ" [value]="dj">{{dj.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button style="width: auto;" mat-fab extended color="primary" (click)="showInfoDj = !showInfoDj">Show info DJ</button>
+        <div info-dj *ngIf="showInfoDj">
+            <p>name : {{dj.name}}<br>
+            description : {{dj.description}}<br>
+            email : {{dj.email}}<br>
+            phone : {{dj.phone}}</p>
+        </div>
+    </div>
+    <div prestataire>
+        <mat-form-field>
+            <mat-label>Traiteur</mat-label>
+            <mat-select [(ngModel)]="traiteur" name="traiteur" (selectionChange)="updateTraiteurEvent($event)">
+                <mat-option *ngFor="let traiteur of listTraiteur" [value]="traiteur">{{traiteur.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <button style="width: auto;" mat-fab extended color="primary" (click)="showInfoTraiteur = !showInfoTraiteur">Show info Traiteur</button>
+        <div info-traiteur *ngIf="showInfoTraiteur">
+            <p>name : {{traiteur.name}}<br>
+            description : {{traiteur.description}}<br>
+            email : {{traiteur.email}}<br>
+            phone : {{traiteur.phone}}</p>
+        </div>
+    </div>
+    <div prestataire>
+        <mat-form-field>
+            <mat-label>Photographe</mat-label>
+            <mat-select [(ngModel)]="photographe" name="photographe" (selectionChange)="updatePhotographeEvent($event)">
+                <mat-option *ngFor="let photographe of listPhotographe" [value]="photographe">{{photographe.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div button-content>
+        <button mat-fab extended color="primary" (click)="showFormCreateTask = !showFormCreateTask">
+            <mat-icon>add</mat-icon>
+            Create Task
+        </button>
+        <button mat-fab extended color="primary" (click)="showFormCreatePrestataire = !showFormCreatePrestataire">
+            <mat-icon>add</mat-icon>
+            Create Prestataire
+        </button>
+    </div>
+    <div create-task>
+        <div edit-mode *ngIf="showFormCreateTask"> 
+            <mat-form-field>
+                <mat-label>Task Name</mat-label>
+                <input matInput [(ngModel)]="newTask.name" name="name">
+            </mat-form-field>  
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea [(ngModel)]="newTask.description" rows="2" cols="30" matInput placeholder="Description"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field>
+                <mat-label>User Task</mat-label>
+                <mat-select [(ngModel)]="newTask.id_user" name="user">
+                    <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           <button mat-fab extended color="primary" createTask (click)="createTask()">Create</button>
+        </div>
+        <div edit-mode *ngIf="showFormCreatePrestataire">
+            <mat-form-field>
+                <mat-label>Compagny name</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.email" name="email" type="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.phone" name="name" type="tel">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <textarea [(ngModel)]="newPrestataire.adresse" rows="2" cols="30" matInput placeholder="Adresse"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea [(ngModel)]="newPrestataire.description" rows="2" cols="30" matInput placeholder="Description"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Service Type</mat-label>
+                <mat-select [(ngModel)]="newPrestataire.type_service" name="service">
+                    <mat-option *ngFor="let service of listService" [value]="service">{{service}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           <button mat-fab extended color="primary" createTask (click)="createPrestataire()">Create</button>
+        </div>
+    </div>
+</div>
+
+<h2>Tasks in progress :</h2>
+<div tasks-content>
+<app-item-task *ngFor="let task of listTasksInProgress" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
+</div>
+
+<h2>Tasks done :</h2>
+<div tasks-content>
+<app-item-task *ngFor="let task of listTasksDone" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
+</div>
+
+<h2>Collaborators :</h2>
+<div collab-content>
+    <div avatar *ngFor="let user of getCollab()"> 
+        <img src="url"> {{user.prenom}} {{user.nom}}
+    </div>
+</div>

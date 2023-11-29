@@ -1,0 +1,21 @@
+<h1>Welcome to Eventi App !</h1>
+<button create mat-fab extended color="primary" (click)="editMode = !editMode">
+    <mat-icon>add</mat-icon>
+    Create Event
+</button>
+<div edit-mode *ngIf="editMode">
+    <span> 
+        <label id="name">Name</label>
+        <input [(ngModel)]="event.name" title="name">
+    </span>
+   <span>
+        <label id="name">Description</label>
+        <input [(ngModel)]="event.description" title="description">
+   </span>
+   <span>
+        <button mat-fab extended color="warn" cancel (click)="cancelForm()" *ngIf="editMode">cancel</button>
+        <button mat-fab extended color="accent" save (click)="createEvent()" *ngIf="editMode">save</button>
+   </span>
+</div>
+
+<app-list-events [events]="eventCollectiondata" (onUpdate)="updateEvent($event)" (onDelete)="deleteEvent($event)"></app-list-events>

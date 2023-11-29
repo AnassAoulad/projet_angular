@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eventi-179d1": {
+      "hosting": {
+        "eventi-angular": [
+          "eventi-179d1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eventi-179d1"
+  }
+}

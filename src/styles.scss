@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+@font-face {
+  font-family: 'Bugaki';
+  src: url('./assets/fonts/Bugaki.ttf') format('truetype');
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 10;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #F8F5F3;
+}

@@ -1,0 +1,85 @@
+:host {
+    div[dropdown-content]{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        div[prestataire]{
+            display: flex;
+            gap: 10px;
+        }
+        div[button-content]{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 20px;
+            button{
+                font-size: 12px;
+                width: 150px;
+                height: 40px;
+            }
+        }
+        div[create-task]{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            div[edit-mode]{
+                width: 300px;
+                height: auto;
+                padding: 10px;
+                border: 1px solid black;
+                align-items: center;
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                span{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                }
+                textarea{
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        button{
+            width: 90px;
+            height: 40px;
+            &[createTask]{
+                width: 60px;
+                height: 20px;
+                background-color: blue;
+                color: white;
+            }
+        }
+    }
+    div[tasks-content]{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    div[collab-content]{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    div[avatar]
+    {
+        color: black; 
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius:100%;
+        width:70px;
+        height: 70px;
+        font-weight: 600;
+        background:paleturquoise
+    }
+    mat-grid-tile[BackTile]
+    {
+        background: lightblue;
+    }
+}

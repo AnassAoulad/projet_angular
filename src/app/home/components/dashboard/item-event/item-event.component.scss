@@ -1,0 +1,46 @@
+:host{
+    .content {
+        background-color: rgb(201, 201, 201);
+        width: 265px;
+        height: auto;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 25px;
+        border: 1px solid black;
+
+        p[title]{
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        div[edit-mode]{
+            display: flex;
+            flex-direction: column;
+        }
+
+        div[button-content]{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            button{
+                width: auto; 
+                height: 35px;
+                &[edit]{
+                    background-color: rgb(131, 131, 255);
+                }
+                &[delete]{
+                    background-color: red;
+                }
+                &[cancel]{
+                    background-color: red;
+                }
+                &[save]{
+                    background-color: green;
+                }
+            }
+        } 
+    }
+}

@@ -1,0 +1,57 @@
+<div class="content">
+	<div card-content *ngIf="!editMode">
+		<p name>{{task.name | uppercase}}</p>
+		<div class="content-card">
+			<p color="primary">Description : {{task.description}}</p>
+			<p>A réaliser avant le : {{task.date_echeance | date}}</p>
+			<p>Assigné à : {{user?.prenom}} {{user?.nom}}</p>
+		</div>
+	</div>
+	<div edit-mode *ngIf="editMode">
+		<span>
+			<label id="name">Name</label>
+			<input [(ngModel)]="task.name" title="name">
+		</span>
+		<span>
+			<label id="name">Description</label>
+			<input [(ngModel)]="task.description" title="description">
+		</span>
+		<span>
+			<mat-form-field>
+				<mat-label>Date</mat-label>
+				<input matInput [matDatepicker]="picker" [(ngModel)]="task.date_echeance" [value]="task.date_echeance"
+					name="date">
+				<mat-hint>MM/DD/YYYY</mat-hint>
+				<mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+		</span>
+		<span>
+			<mat-form-field>
+				<mat-label>User Task</mat-label>
+				<mat-select [(ngModel)]="user" name="user" (selectionChange)="updateUserTask($event)">
+					<mat-option *ngFor="let user of listUsers" [value]="user">{{user.prenom}}{{user.nom}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</span>
+	</div>
+	<div button-content style="padding-top: 20px;">
+		<button (click)="editMode = true" *ngIf="!editMode" mat-fab extended color="primary">
+			<mat-icon>edit</mat-icon>
+			Edit
+		</button>
+		<button (click)="deleteTask()" *ngIf="!editMode" mat-fab extended color="warn">
+			<mat-icon>delete</mat-icon>
+			Delete
+		</button>
+		<button (click)="updateStatusTask()" *ngIf="!editMode" mat-fab extended color="accent">
+			<mat-icon>{{task.status === "done" ? "sync" : "done"}}</mat-icon>
+			{{task.status === "done" ? "progress" : "done"}}
+		</button>
+		<button (click)="updateTask()" *ngIf="editMode" mat-fab extended color="accent">
+			<mat-icon>save</mat-icon>
+			Save
+		</button>
+
+	</div>
+</div>
