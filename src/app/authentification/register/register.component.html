@@ -1,28 +1,22 @@
-<!-- Logo en haut à gauche -->
-<img src="../../assets/logoEventi.png" alt="Logo"
-  style="position: absolute; top: 50px; left: 50px; width: 100px; height: 62.65px;">
-<!-- Formulaire d'inscription -->
-<div class="form-container"
-  style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-  <h1
-    style="color: #000; font-family: 'Bugaki'; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">
-    Inscription</h1>
+<!-- login.component.html -->
+
+<img src="../../assets/logoEventi.png" alt="Logo" class="logo">
+
+<div class="form-container">
+  <h1 class="form-heading">Inscription</h1>
 
   <form [formGroup]="registerForm" (ngSubmit)="submit()">
 
-    <!-- Label et champ Nom -->
-    <div class="form-field" style="margin-top: 40px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
+    <div class="form-field" style="margin-top: 40px;">
+      <div class="flex-column">
         <label for="name" class="input-label">Nom</label>
         <input id="name" placeholder="Name" formControlName="name" class="styled-input" />
       </div>
-      <div *ngIf="name?.errors?.['required']" class="error-message">
-        Nom requis
-      </div>
+      <div *ngIf="name?.errors?.['required']" class="error-message">Nom requis</div>
     </div>
-    <!-- Label et champ Email -->
-    <div class="form-field" style="margin-top: 25px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
+
+    <div class="form-field" style="margin-top: 25px;">
+      <div class="flex-column">
         <label for="email" class="input-label">Email</label>
         <input id="email" placeholder="Email address" formControlName="email" class="styled-input" />
       </div>
@@ -30,19 +24,17 @@
         {{ email?.errors?.['required'] ? 'Email requis' : 'Merci d\'entrer un email valide' }}
       </div>
     </div>
-    <!-- Label et champ Mot de passe -->
-    <div class="form-field" style="margin-top: 25px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
+
+    <div class="form-field" style="margin-top: 25px;">
+      <div class="flex-column">
         <label for="password" class="input-label">Mot de passe</label>
         <input id="password" type="password" placeholder="Password" formControlName="password" class="styled-input" />
       </div>
-      <div *ngIf="password?.errors?.['required']" class="error-message">
-        Mot de passe requis
-      </div>
+      <div *ngIf="password?.errors?.['required']" class="error-message">Mot de passe requis</div>
     </div>
-    <!-- Label et champ Confirmation du mot de passe -->
-    <div class="form-field" style="margin-top: 25px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
+
+    <div class="form-field" style="margin-top: 25px;">
+      <div class="flex-column">
         <label for="confirmPassword" class="input-label">Confirmer mot de passe</label>
         <input id="confirmPassword" type="password" placeholder="Confirm Password" formControlName="confirmPassword"
           class="styled-input" />
@@ -50,15 +42,13 @@
       <div *ngIf="confirmPassword?.errors?.['required']" class="error-message">
         Confirmation du Mot de passe requis
       </div>
+      <mat-error *ngIf="registerForm.errors?.['passwordsDontMatch']" class="error-message">
+        Les mots de passe doivent correspondre
+      </mat-error>
     </div>
-    <mat-error *ngIf="registerForm.errors?.['passwordsDontMatch']"
-      style="color: red; font-size: 12px; margin-top: 5px;">
-      Les mots de passe doivent correspondre
-    </mat-error>
 
-    <!-- Liste des roles -->
     <div class="role">
-      <label for="role" class="input-label">Selectionner un role</label>
+      <label for="role" class="input-label">Sélectionner un rôle</label>
       <select id="role" name="role">
         <option value="admin">Admin</option>
         <option value="manager">Manager</option>
@@ -67,10 +57,8 @@
       </select>
     </div>
 
-    <!-- Bouton "Sign Up" -->
     <div class="center margin-top" style="margin-top: 40px;">
-      <button type="submit"
-        style="cursor: pointer; color: #373636; font-family: 'Bugaki'; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; width: 200px; height: 40px; border: none; border-radius: 30px; background: #CDC5FD;">Inscription</button>
+      <button type="submit" class="login-button">Inscription</button>
     </div>
 
   </form>
