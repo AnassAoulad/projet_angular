@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { CommonModule, DatePipe } from '@angular/common'
 import { DashboardComponent } from './views/dashboard/dashboard.component'
 import { HomeComponent } from './home.component'
 import { HomeRoutingModule } from './home-routing.module'
@@ -9,13 +9,14 @@ import { FormsModule } from '@angular/forms'
 import { DetailEventComponent } from './views/detail-event/detail-event.component'
 import { ItemTaskComponent } from './components/detail-event/item-task/item-task.component'
 import { SharedModule } from '../shared/shared.module'
+import { HighlightDirective } from './highlight.directive'
 
 @NgModule({
 	declarations: [
 		DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent, ItemTaskComponent
 	],
 	imports: [
-		CommonModule, HomeRoutingModule, FormsModule, SharedModule,
+		CommonModule, HomeRoutingModule, FormsModule, SharedModule, DatePipe, HighlightDirective
 	]
 })
 export class HomeModule { }

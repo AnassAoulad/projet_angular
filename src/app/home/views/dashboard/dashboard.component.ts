@@ -2,20 +2,21 @@ import { Component, OnInit } from '@angular/core'
 import { DocumentData, QuerySnapshot } from 'firebase/firestore'
 import { Evenement } from 'src/app/core/models/event.model'
 import { FirebaseService } from 'src/app/core/services/firebase.service'
-
 @Component({
 	selector: 'app-dashboard',
 	templateUrl: './dashboard.component.html',
-	styleUrls: ['./dashboard.component.scss']
+	styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit {
+
+	today = new Date()
 
 	public editMode: boolean = false
 
 	public eventCollectiondata: any = []
-	public event: Evenement = {name: '', description: '', id:'', id_dj: '', id_traiteur: '', id_photographe:'', lieu: ''}
+	public event: Evenement = { name: '', description: '', id: '', id_dj: '', id_traiteur: '', id_photographe: '', lieu: '' }
 
-	constructor(private firebaseService: FirebaseService){}
+	constructor(private firebaseService: FirebaseService) { }
 
 	ngOnInit(): void {
 		this.get()
@@ -36,22 +37,22 @@ export class DashboardComponent implements OnInit{
 		})
 	}
 
-	async createEvent(){
+	async createEvent() {
 		await this.firebaseService.createEvent(this.event)
 		this.cancelForm()
 	}
 
-	async updateEvent(event: Evenement){
+	async updateEvent(event: Evenement) {
 		await this.firebaseService.updateEvent(event)
 	}
 
-	async deleteEvent(id: string){
+	async deleteEvent(id: string) {
 		await this.firebaseService.deleteEvent(id)
 	}
 
-	public cancelForm(){
+	public cancelForm() {
 		this.event.name = ''
-		this.event.description= ''
+		this.event.description = ''
 		this.editMode = false
 	}
 
